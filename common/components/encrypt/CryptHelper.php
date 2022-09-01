@@ -4,9 +4,9 @@ namespace common\components\encrypt;
 
 class CryptHelper
 {
-    protected static $encryptKey = '#quyennv2404';
+    protected static $encryptKey = '#atgvehicle';
     protected static $encryptMethod = 'aes-256-cbc';
-    protected static $iv = 'iamthedoctor2404';
+    protected static $iv = 'atgvehicle020922';
 
     /**
      * CryptHelper constructor.

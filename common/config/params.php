@@ -6,7 +6,7 @@ return [
     'senderName' => 'Example.com mailer',
     'user.passwordResetTokenExpire' => 3600,
     'user.passwordMinLength' => 8,
-    'frontend' => 'http://localhost/yii2-starter-kit/frontend/web/',
-    'backend' => 'http://localhost/yii2-starter-kit/backend/web/',
-    'common' => 'http://localhost/yii2-starter-kit/common',
+    'frontend' => 'http://localhost/atg-vehicle/frontend/web/',
+    'backend' => 'http://localhost/atg-vehicle/backend/web/',
+    'common' => 'http://localhost/atg-vehicle/common',
 ];

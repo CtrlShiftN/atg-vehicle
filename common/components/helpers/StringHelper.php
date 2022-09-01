@@ -2,6 +2,7 @@
 
 namespace common\components\helpers;
 
+use DateTime;
 use Yii;
 
 class StringHelper
@@ -37,5 +38,10 @@ class StringHelper
         $str = preg_replace("/(Ỳ|Ý|Ỵ|Ỷ|Ỹ)/", 'Y', $str);
         $str = preg_replace("/(Đ)/", 'D', $str);
         return $str;
+    }
+
+    public static function genUuid()
+    {
+        return vsprintf('%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex(random_bytes(16)), 4));
     }
 }
