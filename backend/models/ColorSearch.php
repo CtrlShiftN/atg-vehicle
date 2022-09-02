@@ -5,6 +5,7 @@ namespace backend\models;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use backend\models\Color;
+use common\components\SystemConstant;
 
 /**
  * ColorSearch represents the model behind the search form of `backend\models\Color`.
@@ -40,7 +41,7 @@ class ColorSearch extends Color
      */
     public function search($params)
     {
-        $query = Color::find();
+        $query = Color::find()->where(['status' => SystemConstant::STATUS_ACTIVE]);
 
         // add conditions that should always apply here
 

@@ -4,6 +4,7 @@ namespace backend\controllers;
 
 use backend\models\Manufacturer;
 use backend\models\ManufacturerSearch;
+use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;

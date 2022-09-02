@@ -5,11 +5,13 @@ namespace backend\controllers;
 use backend\models\User;
 use backend\models\UserSearch;
 use common\components\encrypt\CryptHelper;
+use common\components\SystemConstant;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use Yii;
+use yii\helpers\Url;
 
 /**
  * UserController implements the CRUD actions for User model.
@@ -115,7 +117,7 @@ class UserController extends Controller
                 }
                 $model->created_at = date('Y-m-d H:m:s');
                 $model->updated_at = date('Y-m-d H:m:s');
-                $model->status = $model::STATUS_ACTIVE;
+                $model->status = SystemConstant::STATUS_ACTIVE;
                 if ($model->save()) {
                     return $this->redirect(Url::toRoute('user/'));
                 }
@@ -153,7 +155,7 @@ class UserController extends Controller
             }
             $model->created_at = date('Y-m-d H:m:s');
             $model->updated_at = date('Y-m-d H:m:s');
-            $model->status = $model::STATUS_ACTIVE;
+            $model->status = SystemConstant::STATUS_ACTIVE;
             if ($model->save()) {
                 return $this->redirect(Url::toRoute('user/'));
             }

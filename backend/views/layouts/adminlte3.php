@@ -69,7 +69,7 @@ AppAsset::register($this);
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
             <a href="<?= $cdnUrl ?>" class="brand-link align-self-center">
-                <img src="<?= $cdnUrl ?>/media/images/AdminLTELogo.png" alt="My Website Logo" class="brand-image img-circle elevation-3 bg-light" style="opacity: .8">
+                <img src="<?= $cdnUrl ?>/upload/media/images/AdminLTELogo.png" alt="My Website Logo" class="brand-image img-circle elevation-3 bg-light" style="opacity: .8">
                 <span class="brand-text font-weight-bold">My Website</span>
             </a>
 
@@ -79,7 +79,7 @@ AppAsset::register($this);
                     <!-- Sidebar user panel (optional) -->
                     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                         <div class="image">
-                            <img src="<?= $cdnUrl ?>/media/images/avatar.png" class="img-circle elevation-2" alt="User Image">
+                            <img src="<?= $cdnUrl ?>/upload/media/images/avatar.png" class="img-circle elevation-2" alt="User Image">
                         </div>
                         <div class="info">
                             <div class="d-block font-weight-bold text-white"><?= Yii::$app->user->identity->name ?></div>
@@ -99,18 +99,39 @@ AppAsset::register($this);
                                 </a>
                             </li>
                         <?php endif; ?>
+                        <!-- Order -->
+                        <li class="nav-item">
+                            <a href="<?= Url::toRoute('order/') ?>" class="nav-link <?= ($controller == 'order') ? 'active' : '' ?>">
+                                <i class="nav-icon fas fa-cash-register"></i>
+                                <p><?= Yii::t('app', 'Orders') ?></p>
+                            </a>
+                        </li>
+                        <!-- Vehicle -->
+                        <li class="nav-item">
+                            <a href="<?= Url::toRoute('vehicle/') ?>" class="nav-link <?= ($controller == 'vehicle') ? 'active' : '' ?>">
+                                <i class="nav-icon fas fa-car-side"></i>
+                                <p><?= Yii::t('app', 'Vehicle') ?></p>
+                            </a>
+                        </li>
                         <!-- Manufacturer -->
                         <li class="nav-item">
                             <a href="<?= Url::toRoute('manufacturer/') ?>" class="nav-link <?= ($controller == 'manufacturer') ? 'active' : '' ?>">
-                                <i class="nav-icon fas fa-user-astronaut"></i>
+                                <i class="nav-icon fas fa-industry"></i>
                                 <p><?= Yii::t('app', 'Manufacturers') ?></p>
                             </a>
                         </li>
                         <!-- Color -->
                         <li class="nav-item">
                             <a href="<?= Url::toRoute('color/') ?>" class="nav-link <?= ($controller == 'color') ? 'active' : '' ?>">
-                                <i class="nav-icon fas fa-user-astronaut"></i>
+                                <i class="nav-icon fas fa-palette"></i>
                                 <p><?= Yii::t('app', 'Colors') ?></p>
+                            </a>
+                        </li>
+                        <!-- Media -->
+                        <li class="nav-item">
+                            <a href="<?= Url::toRoute('media/') ?>" class="nav-link <?= ($controller == 'media') ? 'active' : '' ?>">
+                                <i class="nav-icon fas fa-photo-video"></i>
+                                <p><?= Yii::t('app', 'Media') ?></p>
                             </a>
                         </li>
 

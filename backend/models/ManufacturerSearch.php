@@ -5,6 +5,7 @@ namespace backend\models;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use backend\models\Manufacturer;
+use common\components\SystemConstant;
 
 /**
  * ManufacturerSearch represents the model behind the search form of `backend\models\Manufacturer`.
@@ -40,7 +41,7 @@ class ManufacturerSearch extends Manufacturer
      */
     public function search($params)
     {
-        $query = Manufacturer::find();
+        $query = Manufacturer::find()->where(['status' => SystemConstant::STATUS_ACTIVE]);
 
         // add conditions that should always apply here
 

@@ -2,8 +2,8 @@
 
 namespace backend\controllers;
 
-use backend\models\Color;
-use backend\models\ColorSearch;
+use backend\models\Media;
+use backend\models\MediaSearch;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -11,9 +11,9 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * ColorController implements the CRUD actions for Color model.
+ * MediaController implements the CRUD actions for Media model.
  */
-class ColorController extends Controller
+class MediaController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -49,13 +49,13 @@ class ColorController extends Controller
     }
 
     /**
-     * Lists all Color models.
+     * Lists all Media models.
      *
      * @return string
      */
     public function actionIndex()
     {
-        $searchModel = new ColorSearch();
+        $searchModel = new MediaSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [
@@ -65,7 +65,7 @@ class ColorController extends Controller
     }
 
     /**
-     * Displays a single Color model.
+     * Displays a single Media model.
      * @param int $id ID
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
@@ -78,13 +78,13 @@ class ColorController extends Controller
     }
 
     /**
-     * Creates a new Color model.
+     * Creates a new Media model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
     public function actionCreate()
     {
-        $model = new Color();
+        $model = new Media();
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
@@ -100,7 +100,7 @@ class ColorController extends Controller
     }
 
     /**
-     * Updates an existing Color model.
+     * Updates an existing Media model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id ID
      * @return string|\yii\web\Response
@@ -120,7 +120,7 @@ class ColorController extends Controller
     }
 
     /**
-     * Deletes an existing Color model.
+     * Deletes an existing Media model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id ID
      * @return \yii\web\Response
@@ -134,15 +134,15 @@ class ColorController extends Controller
     }
 
     /**
-     * Finds the Color model based on its primary key value.
+     * Finds the Media model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id ID
-     * @return Color the loaded model
+     * @return Media the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Color::findOne(['id' => $id])) !== null) {
+        if (($model = Media::findOne(['id' => $id])) !== null) {
             return $model;
         }
 

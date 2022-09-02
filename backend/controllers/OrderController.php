@@ -2,18 +2,17 @@
 
 namespace backend\controllers;
 
-use backend\models\Color;
-use backend\models\ColorSearch;
-use Yii;
+use backend\models\Order;
+use backend\models\OrderSearch;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * ColorController implements the CRUD actions for Color model.
+ * OrderController implements the CRUD actions for Order model.
  */
-class ColorController extends Controller
+class OrderController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -49,13 +48,13 @@ class ColorController extends Controller
     }
 
     /**
-     * Lists all Color models.
+     * Lists all Order models.
      *
      * @return string
      */
     public function actionIndex()
     {
-        $searchModel = new ColorSearch();
+        $searchModel = new OrderSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [
@@ -65,7 +64,7 @@ class ColorController extends Controller
     }
 
     /**
-     * Displays a single Color model.
+     * Displays a single Order model.
      * @param int $id ID
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
@@ -78,13 +77,13 @@ class ColorController extends Controller
     }
 
     /**
-     * Creates a new Color model.
+     * Creates a new Order model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
     public function actionCreate()
     {
-        $model = new Color();
+        $model = new Order();
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
@@ -100,7 +99,7 @@ class ColorController extends Controller
     }
 
     /**
-     * Updates an existing Color model.
+     * Updates an existing Order model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id ID
      * @return string|\yii\web\Response
@@ -120,7 +119,7 @@ class ColorController extends Controller
     }
 
     /**
-     * Deletes an existing Color model.
+     * Deletes an existing Order model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id ID
      * @return \yii\web\Response
@@ -134,15 +133,15 @@ class ColorController extends Controller
     }
 
     /**
-     * Finds the Color model based on its primary key value.
+     * Finds the Order model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id ID
-     * @return Color the loaded model
+     * @return Order the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Color::findOne(['id' => $id])) !== null) {
+        if (($model = Order::findOne(['id' => $id])) !== null) {
             return $model;
         }
 
