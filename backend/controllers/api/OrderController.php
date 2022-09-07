@@ -169,5 +169,25 @@ class OrderController extends ActiveController
             ]);
             return;
         }
+        if(is_numeric($manufacturer) || is_numeric($totalPrice)) {
+            echo json_encode([
+                'status' => SystemConstant::API_UNSUCCESS_STATUS,
+                'data' => ['message' => 'Manufacturer or Total Price should be a number'],
+            ]);
+            return;
+        }
+        $result = Order::updateDetails($uuid, $manufacturer, $model, $totalPrice);
+        if ($result == 2) {
+            echo json_encode([
+                'status' => SystemConstant::API_SUCCESS_STATUS,
+            ]);
+            return;
+        } else {
+            echo json_encode([
+                'status' => SystemConstant::API_UNSUCCESS_STATUS,
+                'data' => ['message' => $result]
+            ]);
+            return;
+        }
     }
 }

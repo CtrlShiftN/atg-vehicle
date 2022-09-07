@@ -81,4 +81,34 @@ class Order extends \yii\db\ActiveRecord
             ->where(['o.uuid' => $uuid])->all();
         return $row;
     }
+
+    /**
+     * 
+     */
+    public static function updateDetails($uuid, $manufacturer, $model, $totalPrice)
+    {
+        $countSuccess = 0;
+        $order = Order::findOne(['uuid' => $uuid]);
+        if (!empty($order->id)) {
+            $order->total_price = $totalPrice;
+            $vehicleID = $order->vehicle_id;
+            if($order->save()) {
+                $countSuccess += 1;
+            }
+            $vehicle = Vehicle::findOne($vehicleID);
+            if (!empty($vehicle->id)) {
+                $vehicle->manufacturer = $manufacturer;
+                $vehicle->model = $model;
+                if($vehicle->save()) {
+                    $countSuccess += 1;
+                }
+            } else {
+                return "Vehicle not found";
+            }
+
+            return $countSuccess;
+        } else {
+            return "Order not found";
+        }
+    }
 }
