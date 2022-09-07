@@ -152,5 +152,22 @@ class OrderController extends ActiveController
     public function actionUpdateOrder()
     {
         $uuid = ParamHelper::getParamValue('uuid');
+        if (empty($uuid)) {
+            echo json_encode([
+                'status' => SystemConstant::API_UNSUCCESS_STATUS,
+                'data' => ['message' => 'Missing parameter uuid'],
+            ]);
+            return;
+        }
+        $manufacturer = ParamHelper::getParamValue('manufacturer');
+        $model = ParamHelper::getParamValue('model');
+        $totalPrice = ParamHelper::getParamValue('total_price');
+        if (empty($manufacturer) || empty($model) || empty($totalPrice)) {
+            echo json_encode([
+                'status' => SystemConstant::API_UNSUCCESS_STATUS,
+                'data' => ['message' => 'Missing required parameters'],
+            ]);
+            return;
+        }
     }
 }

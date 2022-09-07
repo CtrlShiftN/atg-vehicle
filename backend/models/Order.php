@@ -2,7 +2,6 @@
 
 namespace backend\models;
 
-use common\components\helpers\StringHelper;
 use Yii;
 use yii\db\Query;
 
@@ -14,6 +13,7 @@ use yii\db\Query;
  * @property int $customer_id
  * @property int $vehicle_id
  * @property int $quantity
+ * @property int $total_price
  * @property int $ship_method 1 for RORO, 2 for container shipping, 3 for get it directly
  * @property string|null $ship_date
  * @property int $ship_fee 0 for free ship
@@ -39,8 +39,8 @@ class Order extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['uuid', 'customer_id', 'vehicle_id', 'quantity', 'created_at'], 'required'],
-            [['customer_id', 'vehicle_id', 'quantity', 'ship_method', 'ship_fee', 'created_by', 'status'], 'integer'],
+            [['uuid', 'customer_id', 'vehicle_id', 'quantity', 'total_price', 'created_at'], 'required'],
+            [['customer_id', 'vehicle_id', 'quantity', 'total_price', 'ship_method', 'ship_fee', 'created_by', 'status'], 'integer'],
             [['ship_date', 'created_at', 'updated_at'], 'safe'],
             [['note'], 'string'],
             [['uuid'], 'string', 'max' => 255],
@@ -59,6 +59,7 @@ class Order extends \yii\db\ActiveRecord
             'customer_id' => Yii::t('app', 'Customer ID'),
             'vehicle_id' => Yii::t('app', 'Vehicle ID'),
             'quantity' => Yii::t('app', 'Quantity'),
+            'total_price' => Yii::t('app', 'Total Price'),
             'ship_method' => Yii::t('app', 'Ship Method'),
             'ship_date' => Yii::t('app', 'Ship Date'),
             'ship_fee' => Yii::t('app', 'Ship Fee'),
@@ -73,7 +74,7 @@ class Order extends \yii\db\ActiveRecord
     public static function getOrderDetailByUuid($uuid)
     {
         $row = (new Query())
-            ->select(['o.uuid', 'u.name', 'u.email', 'u.address', 'u.tel', 'v.SKU', 'v.name', 'v.selling_price', 'o.quantity'])
+            ->select(['o.uuid', 'u.name', 'u.email', 'u.address', 'u.tel', 'v.SKU', 'v.name', 'v.selling_price', 'o.quantity', 'o.total_price'])
             ->from('order as o')
             ->innerJoin('vehicle as v', 'o.vehicle_id = v.id')
             ->innerJoin('user as u', 'o.customer_id = u.id')

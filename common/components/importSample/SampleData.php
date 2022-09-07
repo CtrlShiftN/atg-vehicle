@@ -415,6 +415,7 @@ class SampleData
             $order->customer_id = $values['customer_id'];
             $order->vehicle_id = $values['vehicle_id'];
             $order->quantity = $values['quantity'];
+            $order->total_price = $values['total_price'];
             $order->ship_method = $values['ship_method'];
             $order->ship_date = (new DateTime('+2 day'))->format('Y-m-d H:i:s');
             $order->ship_fee = $values['ship_fee'];

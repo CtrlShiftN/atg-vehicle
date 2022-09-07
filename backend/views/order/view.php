@@ -34,6 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'customer_id',
             'vehicle_id',
             'quantity',
+            'total_price',
             'ship_method',
             'ship_date',
             'ship_fee',

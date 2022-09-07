@@ -18,7 +18,7 @@ class OrderSearch extends Order
     public function rules()
     {
         return [
-            [['id', 'customer_id', 'vehicle_id', 'quantity', 'ship_method', 'ship_fee', 'created_by', 'status'], 'integer'],
+            [['id', 'customer_id', 'vehicle_id', 'quantity', 'total_price', 'ship_method', 'ship_fee', 'created_by', 'status'], 'integer'],
             [['uuid', 'ship_date', 'note', 'created_at', 'updated_at'], 'safe'],
         ];
     }
@@ -63,6 +63,7 @@ class OrderSearch extends Order
             'customer_id' => $this->customer_id,
             'vehicle_id' => $this->vehicle_id,
             'quantity' => $this->quantity,
+            'total_price' => $this->total_price,
             'ship_method' => $this->ship_method,
             'ship_date' => $this->ship_date,
             'ship_fee' => $this->ship_fee,
