@@ -4,6 +4,7 @@ namespace backend\controllers;
 
 use backend\models\Order;
 use backend\models\OrderSearch;
+use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;

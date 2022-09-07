@@ -26,6 +26,8 @@ use yii\helpers\Html;
 
     <?= $form->field($model, 'ship_fee')->textInput() ?>
 
+    <?= $form->field($model, 'created_by')->textInput() ?>
+
     <?= $form->field($model, 'status')->textInput() ?>
 
     <?= $form->field($model, 'note')->textarea(['rows' => 6]) ?>

@@ -391,14 +391,18 @@ class SampleData
             'vehicle_id' => 2,
             'quantity' => 2,
             'ship_method' => 2,
-            'ship_fee' => 0
+            'ship_fee' => 0,
+            'created_by' => 2,
+            'total_price' => 73200
         ],
         [
             'customer_id' => 4,
             'vehicle_id' => 1,
             'quantity' => 5,
             'ship_method' => 1,
-            'ship_fee' => 0
+            'ship_fee' => 0,
+            'created_by' => 3,
+            'total_price' => 277365
         ],
     ];
 
@@ -414,6 +418,7 @@ class SampleData
             $order->ship_method = $values['ship_method'];
             $order->ship_date = (new DateTime('+2 day'))->format('Y-m-d H:i:s');
             $order->ship_fee = $values['ship_fee'];
+            $order->created_by = $values['created_by'];
             $order->created_at = date('Y-m-d H:m:s');
             $order->updated_at = date('Y-m-d H:m:s');
             if ($order->save()) {

@@ -2,19 +2,22 @@
 
 namespace backend\models;
 
+use common\components\helpers\StringHelper;
 use Yii;
+use yii\db\Query;
 
 /**
  * This is the model class for table "order".
  *
  * @property int $id
- * @property string|null $uuid
+ * @property string $uuid
  * @property int $customer_id
  * @property int $vehicle_id
  * @property int $quantity
  * @property int $ship_method 1 for RORO, 2 for container shipping, 3 for get it directly
  * @property string|null $ship_date
  * @property int $ship_fee 0 for free ship
+ * @property int $created_by
  * @property int $status 0 for inactive, 1 for active
  * @property string|null $note
  * @property string $created_at
@@ -36,8 +39,8 @@ class Order extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['customer_id', 'vehicle_id', 'quantity', 'created_at'], 'required'],
-            [['customer_id', 'vehicle_id', 'quantity', 'ship_method', 'ship_fee', 'status'], 'integer'],
+            [['uuid', 'customer_id', 'vehicle_id', 'quantity', 'created_at'], 'required'],
+            [['customer_id', 'vehicle_id', 'quantity', 'ship_method', 'ship_fee', 'created_by', 'status'], 'integer'],
             [['ship_date', 'created_at', 'updated_at'], 'safe'],
             [['note'], 'string'],
             [['uuid'], 'string', 'max' => 255],
@@ -59,10 +62,22 @@ class Order extends \yii\db\ActiveRecord
             'ship_method' => Yii::t('app', 'Ship Method'),
             'ship_date' => Yii::t('app', 'Ship Date'),
             'ship_fee' => Yii::t('app', 'Ship Fee'),
+            'created_by' => Yii::t('app', 'Created By'),
             'status' => Yii::t('app', 'Status'),
             'note' => Yii::t('app', 'Note'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
         ];
+    }
+
+    public static function getOrderDetailByUuid($uuid)
+    {
+        $row = (new Query())
+            ->select(['o.uuid', 'u.name', 'u.email', 'u.address', 'u.tel', 'v.SKU', 'v.name', 'v.selling_price', 'o.quantity'])
+            ->from('order as o')
+            ->innerJoin('vehicle as v', 'o.vehicle_id = v.id')
+            ->innerJoin('user as u', 'o.customer_id = u.id')
+            ->where(['o.uuid' => $uuid])->all();
+        return $row;
     }
 }

@@ -14,13 +14,15 @@ class m220901_105744_create_order_table extends Migration
     {
         $this->createTable('{{%order}}', [
             'id' => $this->primaryKey(),
-            'uuid' => $this->string()->unique(),
+            'uuid' => $this->string()->notNull()->unique(),
             'customer_id' => $this->bigInteger()->notNull(),
             'vehicle_id' => $this->bigInteger()->notNull(),
             'quantity' => $this->integer()->notNull(),
+            'total_price' => $this->bigInteger()->notNull(),
             'ship_method' => $this->smallInteger(3)->notNull()->defaultValue(1)->comment('1 for RORO, 2 for container shipping, 3 for get it directly'),
             'ship_date' => $this->datetime(),
             'ship_fee'=>$this->bigInteger()->notNull()->defaultValue(0)->comment('0 for free ship'),
+            'created_by' => $this->bigInteger()->notNull()->defaultValue(1),
             'status' => $this->smallInteger()->notNull()->defaultValue(1)->comment('0 for inactive, 1 for active'),
             'note' => $this->text(),
             'created_at' => $this->dateTime()->notNull(),
